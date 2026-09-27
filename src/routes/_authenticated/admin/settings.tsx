@@ -38,7 +38,7 @@ function SettingsPage() {
       })
       .eq("id", 1);
     setSaving(false);
-    if (error) return toast.error("Could not save");
+    if (error) { toast.error("Could not save"); return; }
     qc.invalidateQueries({ queryKey: ["site_settings"] });
     toast.success("Settings saved — the website is updated");
   }

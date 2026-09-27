@@ -59,7 +59,7 @@ function RegistrationsPage() {
 
   async function openDeck(path: string) {
     const { data, error } = await supabase.storage.from("pitch-decks").createSignedUrl(path, 300);
-    if (error || !data) return toast.error("Couldn't open the file");
+    if (error || !data) { toast.error("Could not open the file"); return; }
     window.open(data.signedUrl, "_blank");
   }
 
