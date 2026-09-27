@@ -19,7 +19,7 @@ export function Particles({ count = 26 }: { count?: number }) {
         size: 2 + Math.random() * 5,
         delay: Math.random() * 8,
         duration: 9 + Math.random() * 10,
-        hue: hues[Math.floor(Math.random() * hues.length)],
+        hue: hues[Math.floor(Math.random() * hues.length)] ?? "violet",
       })),
     );
   }, [count]);
