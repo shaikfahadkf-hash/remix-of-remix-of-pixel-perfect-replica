@@ -17,7 +17,7 @@ export const Route = createFileRoute("/register")({
       { property: "og:description", content: DESC },
     ],
   }),
-  component: RegisterPage;
+  component: RegisterPage,
 });
 
 const inputClass =
