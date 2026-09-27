@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { IndianRupee, CheckCircle2, Upload } from "lucide-react";
+import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
 import { Particles } from "@/components/site/Particles";
+import { supabase } from "@/integrations/supabase/client";
 
 const TITLE = "Register your team — Pitch Arena 2026";
 const DESC =
@@ -25,6 +27,7 @@ const inputClass =
 
 function RegisterPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
 
   return (
@@ -78,9 +81,42 @@ function RegisterPage() {
             </div>
           ) : (
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                setSubmitted(true);
+                const f = new FormData(e.currentTarget);
+                const file = f.get("deck") as File | null;
+                if (file && file.size > 20 * 1024 * 1024) {
+                  toast.error("Pitch deck must be under 20 MB");
+                  return;
+                }
+                setSending(true);
+                try {
+                  let deck_path: string | null = null;
+                  if (file && file.size > 0) {
+                    const ext = file.name.split(".").pop() ?? "pdf";
+                    const path = `${crypto.randomUUID()}.${ext}`;
+                    const up = await supabase.storage.from("pitch-decks").upload(path, file);
+                    if (up.error) throw up.error;
+                    deck_path = path;
+                  }
+                  const { error } = await supabase.from("registrations").insert({
+                    team_name: String(f.get("team")).trim(),
+                    leader_name: String(f.get("leader")).trim(),
+                    email: String(f.get("email")).trim(),
+                    phone: String(f.get("phone")).trim(),
+                    college: String(f.get("org")).trim(),
+                    stage: String(f.get("stage")),
+                    team_size: Number(f.get("size")),
+                    deck_path,
+                  });
+                  if (error) throw error;
+                  setSubmitted(true);
+                } catch (err) {
+                  console.error(err);
+                  toast.error("Could not submit right now. Please try again.");
+                } finally {
+                  setSending(false);
+                }
               }}
               className="glass surface-lift rounded-3xl p-6 sm:p-9"
             >
@@ -165,9 +201,10 @@ function RegisterPage() {
 
               <button
                 type="submit"
-                className="btn-shimmer surface-glow mt-8 w-full rounded-full px-6 py-4 font-display font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
+                disabled={sending}
+                className="btn-shimmer surface-glow mt-8 w-full rounded-full px-6 py-4 font-display font-semibold text-primary-foreground transition-transform hover:scale-[1.02] disabled:opacity-60"
               >
-                Submit registration
+                {sending ? "Submitting…" : "Submit registration"}
               </button>
               <p className="mt-4 text-center text-xs text-muted-foreground">
                 By submitting you agree to be contacted about Pitch Arena 2026.
