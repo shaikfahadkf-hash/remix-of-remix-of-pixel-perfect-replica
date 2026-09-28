@@ -21,7 +21,6 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import rocket from "@/assets/rocket.png";
 import { Particles, LightBeams } from "@/components/site/Particles";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { Countdown } from "@/components/site/Countdown";
@@ -237,10 +236,11 @@ function Home() {
           >
             <div className="surface-glow absolute inset-8 rounded-full blur-2xl" />
             <img
-              src={rocket}
+              src="/images/pitch-arena-rocket.png"
               alt="A rocket launching inside a lightbulb"
               width={1024}
               height={1280}
+              onError={(event) => { event.currentTarget.hidden = true; }}
               className="animate-float relative w-full"
             />
           </motion.div>

@@ -9,3 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 - Sponsor logos live in private bucket sponsor-logos (public buckets blocked); public site reads them via signed URLs from src/lib/sponsors.ts.
+- Static site imagery uses lowercase root-absolute paths under public/ so Vercel and other production hosts serve identical filenames.

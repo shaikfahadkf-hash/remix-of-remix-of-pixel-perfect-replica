@@ -1,5 +1,4 @@
-import sukhf from "@/assets/sukhf-logo-hd.png.asset.json";
-import sues from "@/assets/sues-logo.png.asset.json";
+import { BrandImage } from "./BrandImage";
 
 const SIZES = {
   sm: "h-10 w-10",
@@ -18,11 +17,11 @@ export function DualLogo({
   const box = `${SIZES[size]} shrink-0 object-contain`;
   return (
     <span className={`inline-flex shrink-0 items-center gap-2 sm:gap-3 ${className}`}>
-      <img src={sukhf.url} alt="SU Knowledge Hub Foundation" className={box} decoding="async" />
+      <BrandImage brand="sukhf" alt="SU Knowledge Hub Foundation" className={box} decoding="async" />
       <span aria-hidden className="font-display text-lg font-light text-muted-foreground">
         ×
       </span>
-      <img src={sues.url} alt="Sultan-ul-Uloom Education Society" className={box} decoding="async" />
+      <BrandImage brand="sues" alt="Sultan-ul-Uloom Education Society" className={box} decoding="async" />
     </span>
   );
 }
