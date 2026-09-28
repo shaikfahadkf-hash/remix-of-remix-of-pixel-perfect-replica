@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 async function log(action: string, details: string) {
   const { data } = await supabase.auth.getUser();
   if (!data.user) return;
-  await supabase.from("admin_activity_log").insert({ user_id: data.user.id, user_email: data.user.email, action, details });
+  await supabase.from("admin_activity_log").insert({ user_id: data.user.id, user_email: data.user.email ?? null, action, details });
 }
 
 export function CrudManager({ table }: { table: TableKey }) {
@@ -35,7 +35,7 @@ export function CrudManager({ table }: { table: TableKey }) {
         const { error } = await db().update(payload).eq("id", editing.id);
         if (error) throw error;
       } else {
-        payload.sort_order = (q.data?.length ?? 0) + 1;
+        payload["sort_order"] = (q.data?.length ?? 0) + 1;
         const { error } = await db().insert(payload);
         if (error) throw error;
       }
@@ -65,10 +65,12 @@ export function CrudManager({ table }: { table: TableKey }) {
   async function move(i: number, dir: -1 | 1) {
     const rows = q.data ?? [];
     const j = i + dir;
-    if (j < 0 || j >= rows.length) return;
+    const a = rows[i];
+    const b = rows[j];
+    if (!a || !b || j < 0 || j >= rows.length) return;
     await Promise.all([
-      db().update({ sort_order: j }).eq("id", rows[i].id),
-      db().update({ sort_order: i }).eq("id", rows[j].id),
+      db().update({ sort_order: j }).eq("id", a.id),
+      db().update({ sort_order: i }).eq("id", b.id),
     ]);
     refresh();
   }
@@ -102,7 +104,7 @@ export function CrudManager({ table }: { table: TableKey }) {
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold">{r[cfg.primary] || "Untitled"}</p>
                 <p className="truncate text-xs text-muted-foreground">
-                  {[r.designation, r.organization, r.position, r.prize, r.caption, r.description].filter(Boolean).join(" · ")}
+                  {[r["designation"], r["organization"], r["position"], r["prize"], r["caption"], r["description"]].filter(Boolean).join(" · ")}
                 </p>
               </div>
               <div className="flex shrink-0 items-center gap-1">
