@@ -1,46 +1,71 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import logo from "@/assets/sukhf-logo.png.asset.json";
+import sukhf from "@/assets/sukhf-logo-hd.png.asset.json";
+import sues from "@/assets/sues-logo.png.asset.json";
 import { Particles } from "./Particles";
 
 export function Loader() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setDone(true), 2100);
+    const t = setTimeout(() => setDone(true), 2600);
     return () => clearTimeout(t);
   }, []);
+
+  const logo = "relative h-24 w-24 object-contain sm:h-32 sm:w-32";
 
   return (
     <AnimatePresence>
       {!done && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background px-4"
           exit={{ opacity: 0, scale: 1.04 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
           <div className="hero-aura absolute inset-0" />
           <Particles count={30} />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative"
-          >
-            <div className="surface-glow absolute inset-0 rounded-full" />
-            <img
-              src={logo.url}
+          <div className="relative flex items-center gap-4 sm:gap-8">
+            <div className="surface-glow absolute inset-0 rounded-full opacity-60 blur-2xl" />
+            <motion.img
+              src={sukhf.url}
               alt="SU Knowledge Hub Foundation"
-              className="animate-float relative h-28 w-28 rounded-2xl bg-foreground/95 p-3 sm:h-32 sm:w-32"
+              className={logo}
+              initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             />
-          </motion.div>
+            <motion.span
+              className="relative font-display text-2xl font-light text-muted-foreground"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              ×
+            </motion.span>
+            <motion.img
+              src={sues.url}
+              alt="Sultan-ul-Uloom Education Society"
+              className={logo}
+              initial={{ opacity: 0, x: 30, filter: "blur(8px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            />
+          </div>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.7 }}
-            className="relative mt-8 font-display text-lg tracking-[0.2em] uppercase text-gradient sm:text-xl"
+            transition={{ delay: 0.7, duration: 0.7 }}
+            className="relative mt-8 text-center font-display text-base tracking-[0.2em] uppercase text-gradient sm:text-xl"
           >
-            Ideas. People. Possibilities.
+            Powering Innovation Together
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.3, duration: 0.7 }}
+            className="relative mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl"
+          >
+            Pitch Arena 2026
           </motion.p>
           <div className="relative mt-8 h-px w-48 overflow-hidden bg-border">
             <motion.div

@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, Globe } from "lucide-react";
-import logo from "@/assets/sukhf-logo.png.asset.json";
+import { DualLogo } from "./DualLogo";
 import skyline from "@/assets/skyline.jpg";
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-border">
+    <footer className="relative mt-24 overflow-hidden border-t border-border bg-background">
       <img
         src={skyline}
         alt=""
@@ -13,25 +13,19 @@ export function Footer() {
         loading="lazy"
         width={1920}
         height={640}
-        className="pointer-events-none absolute bottom-0 left-0 w-full opacity-45"
+        className="pointer-events-none absolute bottom-0 left-0 w-full opacity-80 [filter:contrast(1.25)_saturate(1.1)]"
       />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background/30" />
       <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-10 sm:px-6">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <img
-                src={logo.url}
-                alt="SU Knowledge Hub Foundation"
-                loading="lazy"
-                className="h-12 w-12 rounded-xl bg-foreground/95 p-1"
-              />
-              <div>
-                <p className="font-display font-bold">SU Knowledge Hub Foundation</p>
-                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  Innovate · Incubate · Impact
-                </p>
-              </div>
-            </div>
+            <DualLogo size="lg" />
+            <p className="mt-4 text-sm font-medium text-foreground">
+              Presented by SU Knowledge Hub Foundation
+            </p>
+            <p className="text-sm text-muted-foreground">
+              In Association with Sultan-ul-Uloom Education Society
+            </p>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground">
               Pitch Arena 2026 is a nationwide startup and innovation pitch competition
               hosted in Hyderabad, where ideas meet opportunities.

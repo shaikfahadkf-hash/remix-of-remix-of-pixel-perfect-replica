@@ -4,6 +4,7 @@ import { IndianRupee, CheckCircle2, Upload } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
 import { Particles } from "@/components/site/Particles";
+import { DualLogo } from "@/components/site/DualLogo";
 import { supabase } from "@/integrations/supabase/client";
 
 const TITLE = "Register your team — Pitch Arena 2026";
@@ -36,6 +37,7 @@ function RegisterPage() {
       <Particles count={18} />
       <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <Reveal className="text-center">
+          <DualLogo size="lg" className="mb-6" />
           <p className="section-label">Registration</p>
           <h1 className="mt-3 text-3xl font-bold sm:text-5xl">
             Register for <span className="text-gradient">Pitch Arena 2026</span>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
-import logo from "@/assets/sukhf-logo.png.asset.json";
+import { DualLogo } from "@/components/site/DualLogo";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/auth")({
@@ -52,8 +52,8 @@ function AuthPage() {
   return (
     <div className="hero-aura flex min-h-screen items-center justify-center px-4">
       <div className="glass-strong surface-glow w-full max-w-md rounded-3xl p-8">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={logo.url} alt="SUKHF" className="h-11 w-11 rounded-full object-contain" />
+        <Link to="/" className="flex flex-col items-center gap-3 text-center">
+          <DualLogo size="lg" />
           <div>
             <p className="font-display font-bold">Pitch Arena 2026</p>
             <p className="text-xs text-muted-foreground">Admin dashboard</p>

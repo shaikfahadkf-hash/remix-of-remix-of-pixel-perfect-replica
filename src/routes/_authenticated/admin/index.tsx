@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Users, CheckCircle2, Clock, IndianRupee, XCircle, Trophy } from "lucide-react";
 import { registrationsQuery, settingsQuery } from "@/lib/admin-data";
+import { DualLogo } from "@/components/site/DualLogo";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
   component: Overview,
@@ -30,9 +31,15 @@ function Overview() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <p className="section-label">Overview</p>
-        <h1 className="mt-2 font-display text-3xl font-bold">Dashboard</h1>
+      <div className="glass flex flex-col items-start gap-4 rounded-3xl p-6 sm:flex-row sm:items-center">
+        <DualLogo size="md" />
+        <div className="min-w-0">
+          <p className="section-label">Welcome back</p>
+          <h1 className="mt-1 font-display text-3xl font-bold">Dashboard</h1>
+          <p className="text-sm text-muted-foreground">
+            Pitch Arena 2026 · SUKHF in association with SUES
+          </p>
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
         {stats.map((s) => (
