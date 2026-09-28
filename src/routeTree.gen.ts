@@ -17,9 +17,16 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 import { Route as AuthenticatedAdminAccountRouteImport } from './routes/_authenticated/admin/account'
+import { Route as AuthenticatedAdminAdminsRouteImport } from './routes/_authenticated/admin/admins'
+import { Route as AuthenticatedAdminContentRouteImport } from './routes/_authenticated/admin/content'
+import { Route as AuthenticatedAdminGalleryRouteImport } from './routes/_authenticated/admin/gallery'
+import { Route as AuthenticatedAdminJudgesRouteImport } from './routes/_authenticated/admin/judges'
+import { Route as AuthenticatedAdminMentorsRouteImport } from './routes/_authenticated/admin/mentors'
 import { Route as AuthenticatedAdminRegistrationsRouteImport } from './routes/_authenticated/admin/registrations'
 import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin/settings'
 import { Route as AuthenticatedAdminSponsorsRouteImport } from './routes/_authenticated/admin/sponsors'
+import { Route as AuthenticatedAdminTracksRouteImport } from './routes/_authenticated/admin/tracks'
+import { Route as AuthenticatedAdminWinnersRouteImport } from './routes/_authenticated/admin/winners'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -61,6 +68,36 @@ const AuthenticatedAdminAccountRoute =
     path: '/account',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminAdminsRoute =
+  AuthenticatedAdminAdminsRouteImport.update({
+    id: '/admins',
+    path: '/admins',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminContentRoute =
+  AuthenticatedAdminContentRouteImport.update({
+    id: '/content',
+    path: '/content',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminGalleryRoute =
+  AuthenticatedAdminGalleryRouteImport.update({
+    id: '/gallery',
+    path: '/gallery',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminJudgesRoute =
+  AuthenticatedAdminJudgesRouteImport.update({
+    id: '/judges',
+    path: '/judges',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminMentorsRoute =
+  AuthenticatedAdminMentorsRouteImport.update({
+    id: '/mentors',
+    path: '/mentors',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAdminRegistrationsRoute =
   AuthenticatedAdminRegistrationsRouteImport.update({
     id: '/registrations',
@@ -79,6 +116,18 @@ const AuthenticatedAdminSponsorsRoute =
     path: '/sponsors',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminTracksRoute =
+  AuthenticatedAdminTracksRouteImport.update({
+    id: '/tracks',
+    path: '/tracks',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminWinnersRoute =
+  AuthenticatedAdminWinnersRouteImport.update({
+    id: '/winners',
+    path: '/winners',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -87,9 +136,16 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/admin/account': typeof AuthenticatedAdminAccountRoute
+  '/admin/admins': typeof AuthenticatedAdminAdminsRoute
+  '/admin/content': typeof AuthenticatedAdminContentRoute
+  '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/admin/judges': typeof AuthenticatedAdminJudgesRoute
+  '/admin/mentors': typeof AuthenticatedAdminMentorsRoute
   '/admin/registrations': typeof AuthenticatedAdminRegistrationsRoute
   '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/admin/sponsors': typeof AuthenticatedAdminSponsorsRoute
+  '/admin/tracks': typeof AuthenticatedAdminTracksRoute
+  '/admin/winners': typeof AuthenticatedAdminWinnersRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -98,9 +154,16 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/reset-password': typeof ResetPasswordRoute
   '/admin/account': typeof AuthenticatedAdminAccountRoute
+  '/admin/admins': typeof AuthenticatedAdminAdminsRoute
+  '/admin/content': typeof AuthenticatedAdminContentRoute
+  '/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/admin/judges': typeof AuthenticatedAdminJudgesRoute
+  '/admin/mentors': typeof AuthenticatedAdminMentorsRoute
   '/admin/registrations': typeof AuthenticatedAdminRegistrationsRoute
   '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/admin/sponsors': typeof AuthenticatedAdminSponsorsRoute
+  '/admin/tracks': typeof AuthenticatedAdminTracksRoute
+  '/admin/winners': typeof AuthenticatedAdminWinnersRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -112,9 +175,16 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/admin/account': typeof AuthenticatedAdminAccountRoute
+  '/_authenticated/admin/admins': typeof AuthenticatedAdminAdminsRoute
+  '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
+  '/_authenticated/admin/gallery': typeof AuthenticatedAdminGalleryRoute
+  '/_authenticated/admin/judges': typeof AuthenticatedAdminJudgesRoute
+  '/_authenticated/admin/mentors': typeof AuthenticatedAdminMentorsRoute
   '/_authenticated/admin/registrations': typeof AuthenticatedAdminRegistrationsRoute
   '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/_authenticated/admin/sponsors': typeof AuthenticatedAdminSponsorsRoute
+  '/_authenticated/admin/tracks': typeof AuthenticatedAdminTracksRoute
+  '/_authenticated/admin/winners': typeof AuthenticatedAdminWinnersRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -126,9 +196,16 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/admin'
     | '/admin/account'
+    | '/admin/admins'
+    | '/admin/content'
+    | '/admin/gallery'
+    | '/admin/judges'
+    | '/admin/mentors'
     | '/admin/registrations'
     | '/admin/settings'
     | '/admin/sponsors'
+    | '/admin/tracks'
+    | '/admin/winners'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -137,9 +214,16 @@ export interface FileRouteTypes {
     | '/register'
     | '/reset-password'
     | '/admin/account'
+    | '/admin/admins'
+    | '/admin/content'
+    | '/admin/gallery'
+    | '/admin/judges'
+    | '/admin/mentors'
     | '/admin/registrations'
     | '/admin/settings'
     | '/admin/sponsors'
+    | '/admin/tracks'
+    | '/admin/winners'
     | '/admin'
   id:
     | '__root__'
@@ -150,9 +234,16 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/admin'
     | '/_authenticated/admin/account'
+    | '/_authenticated/admin/admins'
+    | '/_authenticated/admin/content'
+    | '/_authenticated/admin/gallery'
+    | '/_authenticated/admin/judges'
+    | '/_authenticated/admin/mentors'
     | '/_authenticated/admin/registrations'
     | '/_authenticated/admin/settings'
     | '/_authenticated/admin/sponsors'
+    | '/_authenticated/admin/tracks'
+    | '/_authenticated/admin/winners'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -222,6 +313,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminAccountRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/admins': {
+      id: '/_authenticated/admin/admins'
+      path: '/admins'
+      fullPath: '/admin/admins'
+      preLoaderRoute: typeof AuthenticatedAdminAdminsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/content': {
+      id: '/_authenticated/admin/content'
+      path: '/content'
+      fullPath: '/admin/content'
+      preLoaderRoute: typeof AuthenticatedAdminContentRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/gallery': {
+      id: '/_authenticated/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AuthenticatedAdminGalleryRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/judges': {
+      id: '/_authenticated/admin/judges'
+      path: '/judges'
+      fullPath: '/admin/judges'
+      preLoaderRoute: typeof AuthenticatedAdminJudgesRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/mentors': {
+      id: '/_authenticated/admin/mentors'
+      path: '/mentors'
+      fullPath: '/admin/mentors'
+      preLoaderRoute: typeof AuthenticatedAdminMentorsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/admin/registrations': {
       id: '/_authenticated/admin/registrations'
       path: '/registrations'
@@ -243,23 +369,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminSponsorsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/tracks': {
+      id: '/_authenticated/admin/tracks'
+      path: '/tracks'
+      fullPath: '/admin/tracks'
+      preLoaderRoute: typeof AuthenticatedAdminTracksRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/winners': {
+      id: '/_authenticated/admin/winners'
+      path: '/winners'
+      fullPath: '/admin/winners'
+      preLoaderRoute: typeof AuthenticatedAdminWinnersRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteRouteChildren {
   AuthenticatedAdminAccountRoute: typeof AuthenticatedAdminAccountRoute
+  AuthenticatedAdminAdminsRoute: typeof AuthenticatedAdminAdminsRoute
+  AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
+  AuthenticatedAdminGalleryRoute: typeof AuthenticatedAdminGalleryRoute
+  AuthenticatedAdminJudgesRoute: typeof AuthenticatedAdminJudgesRoute
+  AuthenticatedAdminMentorsRoute: typeof AuthenticatedAdminMentorsRoute
   AuthenticatedAdminRegistrationsRoute: typeof AuthenticatedAdminRegistrationsRoute
   AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
   AuthenticatedAdminSponsorsRoute: typeof AuthenticatedAdminSponsorsRoute
+  AuthenticatedAdminTracksRoute: typeof AuthenticatedAdminTracksRoute
+  AuthenticatedAdminWinnersRoute: typeof AuthenticatedAdminWinnersRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
   {
     AuthenticatedAdminAccountRoute: AuthenticatedAdminAccountRoute,
+    AuthenticatedAdminAdminsRoute: AuthenticatedAdminAdminsRoute,
+    AuthenticatedAdminContentRoute: AuthenticatedAdminContentRoute,
+    AuthenticatedAdminGalleryRoute: AuthenticatedAdminGalleryRoute,
+    AuthenticatedAdminJudgesRoute: AuthenticatedAdminJudgesRoute,
+    AuthenticatedAdminMentorsRoute: AuthenticatedAdminMentorsRoute,
     AuthenticatedAdminRegistrationsRoute: AuthenticatedAdminRegistrationsRoute,
     AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
     AuthenticatedAdminSponsorsRoute: AuthenticatedAdminSponsorsRoute,
+    AuthenticatedAdminTracksRoute: AuthenticatedAdminTracksRoute,
+    AuthenticatedAdminWinnersRoute: AuthenticatedAdminWinnersRoute,
     AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   }
 

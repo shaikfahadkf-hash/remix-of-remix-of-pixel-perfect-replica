@@ -41,6 +41,189 @@ export type Database = {
         }
         Relationships: []
       }
+      event_tracks: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          image_url: string | null
+          sort_order: number
+          title: string
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          image_url?: string | null
+          sort_order?: number
+          title: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          image_url?: string | null
+          sort_order?: number
+          title?: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      gallery: {
+        Row: {
+          caption: string | null
+          created_at: string
+          id: string
+          image_url: string
+          sort_order: number
+          title: string | null
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          image_url: string
+          sort_order?: number
+          title?: string | null
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          sort_order?: number
+          title?: string | null
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      judges: {
+        Row: {
+          bio: string | null
+          created_at: string
+          designation: string | null
+          id: string
+          image_url: string | null
+          linkedin_url: string | null
+          name: string
+          organization: string | null
+          sort_order: number
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          designation?: string | null
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name: string
+          organization?: string | null
+          sort_order?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          designation?: string | null
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name?: string
+          organization?: string | null
+          sort_order?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      mentors: {
+        Row: {
+          bio: string | null
+          created_at: string
+          designation: string | null
+          id: string
+          image_url: string | null
+          linkedin_url: string | null
+          name: string
+          organization: string | null
+          sort_order: number
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          designation?: string | null
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name: string
+          organization?: string | null
+          sort_order?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          designation?: string | null
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name?: string
+          organization?: string | null
+          sort_order?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          designation: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          designation?: string | null
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          designation?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       registrations: {
         Row: {
           college: string
@@ -205,12 +388,79 @@ export type Database = {
         }
         Relationships: []
       }
+      website_content: {
+        Row: {
+          key: string
+          label: string | null
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          label?: string | null
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          key?: string
+          label?: string | null
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      winners: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string | null
+          position: string | null
+          prize: string | null
+          sort_order: number
+          startup_idea: string | null
+          team_name: string
+          updated_at: string
+          visible: boolean
+          year: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          position?: string | null
+          prize?: string | null
+          sort_order?: number
+          startup_idea?: string | null
+          team_name: string
+          updated_at?: string
+          visible?: boolean
+          year?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          position?: string | null
+          prize?: string | null
+          sort_order?: number
+          startup_idea?: string | null
+          team_name?: string
+          updated_at?: string
+          visible?: boolean
+          year?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
       claim_first_admin: { Args: never; Returns: boolean }
+      grant_admin_by_email: {
+        Args: { _email: string; _super: boolean }
+        Returns: string
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -218,10 +468,18 @@ export type Database = {
         }
         Returns: boolean
       }
+      list_admins: {
+        Args: never
+        Returns: {
+          email: string
+          roles: string[]
+          user_id: string
+        }[]
+      }
       track_sponsor_click: { Args: { _id: string }; Returns: undefined }
     }
     Enums: {
-      app_role: "admin" | "user"
+      app_role: "admin" | "user" | "super_admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -349,7 +607,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "user"],
+      app_role: ["admin", "user", "super_admin"],
     },
   },
 } as const
