@@ -81,7 +81,7 @@ export function CrudManager({ table }: { table: TableKey }) {
           <h1 className="font-display text-2xl font-bold">{cfg.title}</h1>
           <p className="text-sm text-muted-foreground">{rows.length} total · changes appear on the website instantly</p>
         </div>
-        <button onClick={() => setEditing({})} className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold">
+        <button onClick={() => setEditing({})} className="gradient-brand text-primary-foreground inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold">
           <Plus className="h-4 w-4" /> Add {cfg.singular}
         </button>
       </div>
@@ -151,7 +151,7 @@ export function CrudManager({ table }: { table: TableKey }) {
                   )}
                 </label>
               ))}
-              <button disabled={saving || cfg.fields.some((f) => f.required && !editing[f.key])} className="btn-primary w-full rounded-full py-2.5 text-sm font-semibold disabled:opacity-50">
+              <button disabled={saving || cfg.fields.some((f) => f.required && !editing[f.key])} className="gradient-brand text-primary-foreground w-full rounded-full py-2.5 text-sm font-semibold disabled:opacity-50">
                 {saving ? "Saving…" : "Save changes"}
               </button>
             </form>
