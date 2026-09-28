@@ -1,4 +1,0 @@
-create policy "Anyone can view sponsor logos" on storage.objects for select to anon, authenticated using (bucket_id = 'sponsor-logos');
-create policy "Admins upload sponsor logos" on storage.objects for insert to authenticated with check (bucket_id = 'sponsor-logos' and public.has_role(auth.uid(),'admin'));
-create policy "Admins update sponsor logos" on storage.objects for update to authenticated using (bucket_id = 'sponsor-logos' and public.has_role(auth.uid(),'admin'));
-create policy "Admins delete sponsor logos" on storage.objects for delete to authenticated using (bucket_id = 'sponsor-logos' and public.has_role(auth.uid(),'admin'));

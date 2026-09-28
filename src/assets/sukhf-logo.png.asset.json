@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "e6657132-68e2-436b-a3f8-0d313b864a68",
-  "project_id": "8add406e-28a3-407c-a90d-185e1bd5ec0d",
-  "url": "/__l5e/assets-v1/e6657132-68e2-436b-a3f8-0d313b864a68/sukhf-logo.png",
-  "r2_key": "a/v1/8add406e-28a3-407c-a90d-185e1bd5ec0d/e6657132-68e2-436b-a3f8-0d313b864a68/sukhf-logo.png",
-  "original_filename": "sukhf-logo.png",
-  "size": 512614,
   "content_type": "image/png",
-  "created_at": "2026-09-27T19:17:26Z"
+  "created_at": "2026-09-27T19:17:26Z",
+  "original_filename": "sukhf-logo.png",
+  "project_id": "fe1f0af3-8cb1-443e-8a3d-964ae9a8516f",
+  "r2_key": "a/v1/fe1f0af3-8cb1-443e-8a3d-964ae9a8516f/e6657132-68e2-436b-a3f8-0d313b864a68/sukhf-logo.png",
+  "size": 512614,
+  "url": "/__l5e/assets-v1/e6657132-68e2-436b-a3f8-0d313b864a68/sukhf-logo.png",
+  "version": 1
 }
