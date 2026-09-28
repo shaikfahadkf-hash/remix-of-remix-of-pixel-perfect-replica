@@ -27,7 +27,6 @@ export function Loader() {
             <div className="surface-glow absolute inset-0 rounded-full opacity-60 blur-2xl" />
             <motion.div
               className={logo}
-              alt="SU Knowledge Hub Foundation"
               initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -44,7 +43,6 @@ export function Loader() {
             </motion.span>
             <motion.div
               className={logo}
-              alt="Sultan-ul-Uloom Education Society"
               initial={{ opacity: 0, x: 30, filter: "blur(8px)" }}
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
