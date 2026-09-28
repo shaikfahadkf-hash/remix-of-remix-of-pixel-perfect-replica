@@ -427,41 +427,7 @@ function Home() {
       </section>
 
       {/* SPONSORS */}
-      <section id="sponsors" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <SectionHeading
-          label="Sponsors & partners"
-          title="Partner with Pitch Arena 2026"
-          description="Sponsor slots across every category are open. Write to us to put your brand in front of India's next founders."
-        />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {SPONSOR_TIERS.map((s, i) => (
-            <Reveal key={s.tier} delay={i * 0.06}>
-              <div className="glass h-full rounded-3xl p-6">
-                <p className="font-display text-base font-semibold">{s.tier}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{s.note}</p>
-                <div className="mt-5 grid grid-cols-3 gap-2">
-                  {[0, 1, 2].map((n) => (
-                    <div
-                      key={n}
-                      className="flex h-14 items-center justify-center rounded-xl border border-dashed border-border text-[0.6rem] uppercase tracking-widest text-muted-foreground"
-                    >
-                      Open
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal className="mt-8 text-center">
-          <a
-            href="mailto:ceo@suknowledge.org?subject=Pitch%20Arena%202026%20Sponsorship"
-            className="glass inline-flex rounded-full px-6 py-3 font-display font-semibold hover:bg-secondary/70"
-          >
-            Become a sponsor
-          </a>
-        </Reveal>
-      </section>
+      <SponsorsSection />
 
       {/* SUPPORTED BY */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
