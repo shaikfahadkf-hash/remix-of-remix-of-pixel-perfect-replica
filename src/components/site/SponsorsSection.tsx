@@ -108,7 +108,13 @@ function SponsorRow({ items }: { items: Sponsor[] }) {
         >
           {s.featured && <Star className="absolute right-3 top-3 h-4 w-4 fill-gold text-gold" />}
           {s.signed ? (
-            <img src={s.signed} alt={s.name} loading="lazy" className="max-h-16 max-w-full object-contain" />
+            <img
+              src={s.signed}
+              alt={s.name}
+              loading="lazy"
+              className="max-h-16 max-w-full object-contain"
+              onError={(event) => { event.currentTarget.hidden = true; }}
+            />
           ) : (
             <span className="font-display text-lg font-bold text-gradient">{s.name}</span>
           )}
