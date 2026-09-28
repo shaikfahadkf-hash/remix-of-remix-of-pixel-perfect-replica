@@ -29,12 +29,12 @@ function ResetPage() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (passwordChecks(pw).some((c) => !c.ok)) return toast.error("Password isn't strong enough");
-    if (pw !== confirm) return toast.error("Passwords don't match");
+    if (passwordChecks(pw).some((c) => !c.ok)) { toast.error("Password isn't strong enough"); return; }
+    if (pw !== confirm) { toast.error("Passwords don't match"); return; }
     setBusy(true);
     const { data, error } = await supabase.auth.updateUser({ password: pw });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (data.user) {
       await supabase.from("admin_activity_log").insert({ user_id: data.user.id, user_email: data.user.email ?? null, action: "Password reset via email link" });
     }

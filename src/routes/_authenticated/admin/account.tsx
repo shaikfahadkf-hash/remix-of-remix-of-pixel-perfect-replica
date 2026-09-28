@@ -96,7 +96,7 @@ function AccountPage() {
     setBusy("profile");
     const { error } = await supabase.auth.updateUser({ data });
     setBusy(null);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     await logActivity("Profile updated", data.full_name || undefined);
     refreshLog();
     toast.success("Profile saved");
@@ -108,16 +108,16 @@ function AccountPage() {
     const f = new FormData(form);
     const newEmail = String(f.get("new_email")).trim().toLowerCase();
     const current = String(f.get("current"));
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail) || newEmail.length > 255) return toast.error("Enter a valid email");
-    if (newEmail === email) return toast.error("That's already your email");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail) || newEmail.length > 255) { toast.error("Enter a valid email"); return; }
+    if (newEmail === email) { toast.error("That's already your email"); return; }
     setBusy("email");
-    if (!(await verifyCurrent(email, current))) { setBusy(null); return toast.error("Current password is incorrect"); }
+    if (!(await verifyCurrent(email, current))) { setBusy(null); { toast.error("Current password is incorrect"); return; } }
     const { error } = await supabase.auth.updateUser(
       { email: newEmail },
       { emailRedirectTo: `${window.location.origin}/admin/account` },
     );
     setBusy(null);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     await logActivity("Email change requested", `${email} → ${newEmail}`);
     refreshLog();
     form.reset();
@@ -130,14 +130,14 @@ function AccountPage() {
     const f = new FormData(form);
     const current = String(f.get("current"));
     const confirm = String(f.get("confirm"));
-    if (passwordChecks(newPw).some((c) => !c.ok)) return toast.error("New password isn't strong enough");
-    if (newPw !== confirm) return toast.error("Passwords don't match");
-    if (newPw === current) return toast.error("New password must be different");
+    if (passwordChecks(newPw).some((c) => !c.ok)) { toast.error("New password isn't strong enough"); return; }
+    if (newPw !== confirm) { toast.error("Passwords don't match"); return; }
+    if (newPw === current) { toast.error("New password must be different"); return; }
     setBusy("pw");
-    if (!(await verifyCurrent(email, current))) { setBusy(null); return toast.error("Current password is incorrect"); }
+    if (!(await verifyCurrent(email, current))) { setBusy(null); { toast.error("Current password is incorrect"); return; } }
     const { error } = await supabase.auth.updateUser({ password: newPw });
     setBusy(null);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     await logActivity("Password changed");
     refreshLog();
     form.reset();
@@ -151,7 +151,7 @@ function AccountPage() {
       redirectTo: `${window.location.origin}/reset-password`,
     });
     setBusy(null);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     await logActivity("Password reset email sent");
     refreshLog();
     toast.success(`Reset link sent to ${email}`);
