@@ -175,7 +175,9 @@ function Home() {
               transition={{ delay: 0.18, duration: 0.7 }}
               className="mt-5 text-4xl leading-[1.05] font-bold sm:text-6xl lg:text-7xl [text-wrap:balance]"
             >
-              Pitch <span className="text-gradient">Arena</span> 2026
+              <span className="text-navy-gradient">PITCH</span>{" "}
+              <span className="text-gradient">ARENA</span>{" "}
+              <span className="text-navy-gradient">2026</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 18 }}
