@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { LayoutDashboard, Users, Settings, LogOut, Globe, ShieldAlert, Handshake, UserCog, Layers, GraduationCap, Gavel, Trophy, Image, FileText, Crown } from "lucide-react";
+import { LayoutDashboard, Users, Settings, LogOut, Globe, ShieldAlert, Handshake, UserCog, FileText, Crown } from "lucide-react";
 import logo from "@/assets/sukhf-logo.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -19,11 +19,6 @@ const nav = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { to: "/admin/registrations", label: "Registrations", icon: Users, exact: false },
   { to: "/admin/sponsors", label: "Sponsors", icon: Handshake, exact: false },
-  { to: "/admin/tracks", label: "Event tracks", icon: Layers, exact: false },
-  { to: "/admin/mentors", label: "Mentors", icon: GraduationCap, exact: false },
-  { to: "/admin/judges", label: "Judges", icon: Gavel, exact: false },
-  { to: "/admin/winners", label: "Winners", icon: Trophy, exact: false },
-  { to: "/admin/gallery", label: "Gallery", icon: Image, exact: false },
   { to: "/admin/content", label: "Website content", icon: FileText, exact: false },
   { to: "/admin/settings", label: "Website settings", icon: Settings, exact: false },
   { to: "/admin/admins", label: "Admins", icon: Crown, exact: false },
