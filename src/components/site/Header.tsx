@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import logo from "@/assets/sukhf-logo.png.asset.json";
 
 const NAV = [
@@ -77,8 +78,15 @@ export function Header() {
         </div>
       </div>
 
+      <AnimatePresence>
       {open && (
-        <div className="glass-strong mx-4 mt-2 rounded-2xl p-3 lg:hidden">
+        <motion.div
+          initial={{ opacity: 0, y: -12, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -12, scale: 0.97 }}
+          transition={{ duration: 0.22 }}
+          className="glass-strong mx-4 mt-2 max-h-[75vh] overflow-y-auto rounded-2xl p-3 lg:hidden"
+        >
           <nav className="grid gap-1">
             {NAV.map((item) => (
               <Link
@@ -86,7 +94,7 @@ export function Header() {
                 to="/"
                 hash={item.hash}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-2.5 text-sm text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
+                className="rounded-xl px-3 py-3 text-base text-muted-foreground active:bg-secondary/70 hover:bg-secondary/70 hover:text-foreground"
               >
                 {item.label}
               </Link>
@@ -99,8 +107,9 @@ export function Header() {
               Register Now
             </Link>
           </nav>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </header>
   );
 }

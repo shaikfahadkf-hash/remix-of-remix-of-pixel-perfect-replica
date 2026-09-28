@@ -17,6 +17,7 @@ import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 import { Route as AuthenticatedAdminRegistrationsRouteImport } from './routes/_authenticated/admin/registrations'
 import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin/settings'
+import { Route as AuthenticatedAdminSponsorsRouteImport } from './routes/_authenticated/admin/sponsors'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -59,6 +60,12 @@ const AuthenticatedAdminSettingsRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminSponsorsRoute =
+  AuthenticatedAdminSponsorsRouteImport.update({
+    id: '/sponsors',
+    path: '/sponsors',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/admin/registrations': typeof AuthenticatedAdminRegistrationsRoute
   '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/sponsors': typeof AuthenticatedAdminSponsorsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -75,6 +83,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/admin/registrations': typeof AuthenticatedAdminRegistrationsRoute
   '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/sponsors': typeof AuthenticatedAdminSponsorsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -86,6 +95,7 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/admin/registrations': typeof AuthenticatedAdminRegistrationsRoute
   '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/_authenticated/admin/sponsors': typeof AuthenticatedAdminSponsorsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/registrations'
     | '/admin/settings'
+    | '/admin/sponsors'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/admin/registrations'
     | '/admin/settings'
+    | '/admin/sponsors'
     | '/admin'
   id:
     | '__root__'
@@ -115,6 +127,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/_authenticated/admin/registrations'
     | '/_authenticated/admin/settings'
+    | '/_authenticated/admin/sponsors'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -183,12 +196,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/sponsors': {
+      id: '/_authenticated/admin/sponsors'
+      path: '/sponsors'
+      fullPath: '/admin/sponsors'
+      preLoaderRoute: typeof AuthenticatedAdminSponsorsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteRouteChildren {
   AuthenticatedAdminRegistrationsRoute: typeof AuthenticatedAdminRegistrationsRoute
   AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
+  AuthenticatedAdminSponsorsRoute: typeof AuthenticatedAdminSponsorsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
@@ -196,6 +217,7 @@ const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren
   {
     AuthenticatedAdminRegistrationsRoute: AuthenticatedAdminRegistrationsRoute,
     AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
+    AuthenticatedAdminSponsorsRoute: AuthenticatedAdminSponsorsRoute,
     AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   }
 

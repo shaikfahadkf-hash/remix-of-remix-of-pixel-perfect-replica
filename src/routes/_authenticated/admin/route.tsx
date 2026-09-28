@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { LayoutDashboard, Users, Settings, LogOut, Globe, ShieldAlert } from "lucide-react";
+import { LayoutDashboard, Users, Settings, LogOut, Globe, ShieldAlert, Handshake } from "lucide-react";
 import logo from "@/assets/sukhf-logo.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -18,6 +18,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
 const nav = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { to: "/admin/registrations", label: "Registrations", icon: Users, exact: false },
+  { to: "/admin/sponsors", label: "Sponsors", icon: Handshake, exact: false },
   { to: "/admin/settings", label: "Website settings", icon: Settings, exact: false },
 ] as const;
 
