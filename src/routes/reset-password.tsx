@@ -36,7 +36,7 @@ function ResetPage() {
     setBusy(false);
     if (error) return toast.error(error.message);
     if (data.user) {
-      await supabase.from("admin_activity_log").insert({ user_id: data.user.id, user_email: data.user.email, action: "Password reset via email link" });
+      await supabase.from("admin_activity_log").insert({ user_id: data.user.id, user_email: data.user.email ?? null, action: "Password reset via email link" });
     }
     toast.success("Password updated");
     navigate({ to: "/admin" });

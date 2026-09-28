@@ -52,7 +52,7 @@ async function logActivity(action: string, details?: string) {
   if (!data.user) return;
   await supabase.from("admin_activity_log").insert({
     user_id: data.user.id,
-    user_email: data.user.email,
+    user_email: data.user.email ?? null,
     action,
     details: details ?? null,
   });
