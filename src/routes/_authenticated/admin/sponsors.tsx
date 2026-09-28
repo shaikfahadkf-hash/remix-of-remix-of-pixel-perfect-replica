@@ -54,7 +54,10 @@ function SponsorsAdmin() {
   }
 
   async function saveSponsor(logoFile?: File | null) {
-    if (!editing?.name?.trim()) return toast.error("Sponsor name is required");
+    if (!editing?.name?.trim()) {
+      toast.error("Sponsor name is required");
+      return;
+    }
     setBusy(true);
     try {
       let logo_url = editing.logo_url ?? null;
