@@ -82,6 +82,22 @@ function AuthPage() {
             >
               {busy ? "Please wait…" : mode === "in" ? "Sign in" : "Create account"}
             </button>
+            {mode === "in" && (
+              <button
+                type="button"
+                onClick={async () => {
+                  const el = document.querySelector<HTMLInputElement>('input[name="email"]');
+                  const em = el?.value.trim();
+                  if (!em) { toast.error("Enter your email first"); return; }
+                  const { error } = await supabase.auth.resetPasswordForEmail(em, { redirectTo: `${window.location.origin}/reset-password` });
+                  if (error) { toast.error(error.message); return; }
+                  toast.success("If that account exists, a reset link is on its way");
+                }}
+                className="w-full text-center text-sm text-muted-foreground hover:text-foreground"
+              >
+                Forgot password?
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setMode(mode === "in" ? "up" : "in")}
