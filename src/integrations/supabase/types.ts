@@ -89,6 +89,77 @@ export type Database = {
         }
         Relationships: []
       }
+      sponsor_categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          sort_order: number
+          visible: boolean
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          sort_order?: number
+          visible?: boolean
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          sort_order?: number
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      sponsors: {
+        Row: {
+          category_id: string | null
+          clicks: number
+          created_at: string
+          featured: boolean
+          id: string
+          logo_url: string | null
+          name: string
+          sort_order: number
+          visible: boolean
+          website_url: string | null
+        }
+        Insert: {
+          category_id?: string | null
+          clicks?: number
+          created_at?: string
+          featured?: boolean
+          id?: string
+          logo_url?: string | null
+          name: string
+          sort_order?: number
+          visible?: boolean
+          website_url?: string | null
+        }
+        Update: {
+          category_id?: string | null
+          clicks?: number
+          created_at?: string
+          featured?: boolean
+          id?: string
+          logo_url?: string | null
+          name?: string
+          sort_order?: number
+          visible?: boolean
+          website_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sponsors_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "sponsor_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string
@@ -120,6 +191,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      track_sponsor_click: { Args: { _id: string }; Returns: undefined }
     }
     Enums: {
       app_role: "admin" | "user"
