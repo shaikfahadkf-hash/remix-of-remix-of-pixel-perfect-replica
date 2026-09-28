@@ -29,7 +29,7 @@ function AdminsPage() {
     },
   });
   const logIt = (action: string, details: string) =>
-    supabase.from("admin_activity_log").insert({ user_id: user.id, user_email: user.email, action, details });
+    supabase.from("admin_activity_log").insert({ user_id: user.id, user_email: user.email ?? null, action, details });
 
   async function add(e: React.FormEvent) {
     e.preventDefault();

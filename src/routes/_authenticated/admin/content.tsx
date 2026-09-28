@@ -26,7 +26,7 @@ function ContentPage() {
     setSaving(false);
     if (error) return void toast.error(error.message);
     const { data } = await supabase.auth.getUser();
-    if (data.user) await supabase.from("admin_activity_log").insert({ user_id: data.user.id, user_email: data.user.email, action: "Updated website content", details: null });
+    if (data.user) await supabase.from("admin_activity_log").insert({ user_id: data.user.id, user_email: data.user.email ?? null, action: "Updated website content", details: null });
     toast.success("Saved — live on the website");
     qc.invalidateQueries({ queryKey: ["website_content"] });
   }

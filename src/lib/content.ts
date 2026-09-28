@@ -61,13 +61,13 @@ export type Row = Record<string, any> & { id: string; sort_order: number; visibl
 
 /** Images are stored as paths in the private sponsor-logos bucket (media/…) or as full https links. */
 export async function signRows(rows: Row[]) {
-  const paths = rows.map((r) => r.image_url).filter((p) => p && !/^https?:\/\//.test(p)) as string[];
+  const paths = rows.map((r) => r["image_url"]).filter((p) => p && !/^https?:\/\//.test(p)) as string[];
   const map = new Map<string, string>();
   if (paths.length) {
     const { data } = await supabase.storage.from("sponsor-logos").createSignedUrls(paths, 60 * 60 * 24);
     (data ?? []).forEach((d) => d.path && d.signedUrl && map.set(d.path, d.signedUrl));
   }
-  rows.forEach((r) => (r.signed = r.image_url ? (/^https?:\/\//.test(r.image_url) ? r.image_url : map.get(r.image_url) ?? null) : null));
+  rows.forEach((r) => (r.signed = r["image_url"] ? (/^https?:\/\//.test(r["image_url"]) ? r["image_url"] : map.get(r["image_url"]) ?? null) : null));
   return rows;
 }
 
