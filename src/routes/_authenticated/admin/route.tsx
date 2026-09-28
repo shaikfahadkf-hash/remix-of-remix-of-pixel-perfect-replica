@@ -1,7 +1,7 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { LayoutDashboard, Users, Settings, LogOut, Globe, ShieldAlert, Handshake, UserCog, FileText, Crown } from "lucide-react";
-import logo from "@/assets/sukhf-logo.png.asset.json";
+import { BrandImage } from "@/components/site/BrandImage";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -69,7 +69,7 @@ function AdminLayout() {
     <div className="min-h-screen lg:flex">
       <aside className="glass-strong border-b border-border lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:shrink-0 lg:border-b-0 lg:border-r">
         <div className="flex items-center gap-3 p-5">
-          <img src={logo.url} alt="SUKHF" className="h-10 w-10 rounded-full object-contain" />
+          <BrandImage brand="sukhf" alt="SUKHF" className="h-10 w-10 rounded-full object-contain" decoding="async" />
           <div>
             <p className="font-display text-sm font-bold">Pitch Arena 2026</p>
             <p className="text-xs text-muted-foreground">Super admin</p>

@@ -1,18 +1,18 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, Globe } from "lucide-react";
 import { DualLogo } from "./DualLogo";
-import skyline from "@/assets/skyline.jpg";
 
 export function Footer() {
   return (
     <footer className="relative mt-24 overflow-hidden border-t border-border bg-background">
       <img
-        src={skyline}
+        src="/images/hyderabad-skyline.jpg"
         alt=""
         aria-hidden
         loading="lazy"
         width={1920}
         height={640}
+        onError={(event) => { event.currentTarget.hidden = true; }}
         className="pointer-events-none absolute bottom-0 left-0 w-full opacity-80 [filter:contrast(1.25)_saturate(1.1)]"
       />
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background/30" />

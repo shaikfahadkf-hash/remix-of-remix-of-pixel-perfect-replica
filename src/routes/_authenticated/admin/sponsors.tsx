@@ -169,7 +169,14 @@ function SponsorsAdmin() {
                     >
                       <GripVertical className="hidden h-4 w-4 shrink-0 cursor-grab text-muted-foreground sm:block" />
                       <div className="flex h-10 w-14 shrink-0 items-center justify-center rounded-lg bg-foreground/90">
-                        {s.signed ? <img src={s.signed} alt="" className="max-h-8 max-w-12 object-contain" /> : null}
+                        {s.signed ? (
+                          <img
+                            src={s.signed}
+                            alt=""
+                            className="max-h-8 max-w-12 object-contain"
+                            onError={(event) => { event.currentTarget.hidden = true; }}
+                          />
+                        ) : null}
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-medium">{s.name}</p>

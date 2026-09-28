@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import sukhf from "@/assets/sukhf-logo-hd.png.asset.json";
-import sues from "@/assets/sues-logo.png.asset.json";
 import { Particles } from "./Particles";
+import { BrandImage } from "./BrandImage";
 
 export function Loader() {
   const [done, setDone] = useState(false);
@@ -26,14 +25,14 @@ export function Loader() {
           <Particles count={30} />
           <div className="relative flex items-center gap-4 sm:gap-8">
             <div className="surface-glow absolute inset-0 rounded-full opacity-60 blur-2xl" />
-            <motion.img
-              src={sukhf.url}
-              alt="SU Knowledge Hub Foundation"
+            <motion.div
               className={logo}
               initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-            />
+            >
+              <BrandImage brand="sukhf" alt="SU Knowledge Hub Foundation" className="h-full w-full object-contain" decoding="async" fetchPriority="high" />
+            </motion.div>
             <motion.span
               className="relative font-display text-2xl font-light text-muted-foreground"
               initial={{ opacity: 0, scale: 0.5 }}
@@ -42,14 +41,14 @@ export function Loader() {
             >
               ×
             </motion.span>
-            <motion.img
-              src={sues.url}
-              alt="Sultan-ul-Uloom Education Society"
+            <motion.div
               className={logo}
               initial={{ opacity: 0, x: 30, filter: "blur(8px)" }}
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-            />
+            >
+              <BrandImage brand="sues" alt="Sultan-ul-Uloom Education Society" className="h-full w-full object-contain" decoding="async" fetchPriority="high" />
+            </motion.div>
           </div>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
