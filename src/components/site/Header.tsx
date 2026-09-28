@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import logo from "@/assets/sukhf-logo.png.asset.json";
+import { DualLogo } from "./DualLogo";
 
 const NAV = [
   { label: "Home", hash: "top" },
@@ -33,17 +33,16 @@ export function Header() {
     >
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 sm:px-6">
         <Link to="/" className="flex min-w-0 items-center gap-3">
-          <img
-            src={logo.url}
-            alt="SU Knowledge Hub Foundation"
-            className="h-11 w-11 shrink-0 rounded-xl bg-foreground/95 p-1"
-          />
-          <span className="min-w-0">
+          <DualLogo size="sm" className="sm:[&_img]:h-12 sm:[&_img]:w-12" />
+          <span className="min-w-0 border-l border-border pl-3">
             <span className="block truncate font-display text-sm font-bold sm:text-base">
-              Pitch Arena 2026
+              PITCH ARENA 2026
             </span>
-            <span className="block truncate text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
-              SU Knowledge Hub Foundation
+            <span className="hidden truncate text-[0.65rem] text-muted-foreground sm:block">
+              Presented by SU Knowledge Hub Foundation (SUKHF)
+            </span>
+            <span className="hidden truncate text-[0.65rem] text-muted-foreground sm:block">
+              In Association with Sultan-ul-Uloom Education Society (SUES)
             </span>
           </span>
         </Link>
