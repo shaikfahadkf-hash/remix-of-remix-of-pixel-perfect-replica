@@ -25,6 +25,7 @@ import rocket from "@/assets/rocket.png";
 import { Particles, LightBeams } from "@/components/site/Particles";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { Countdown } from "@/components/site/Countdown";
+import { SponsorsSection } from "@/components/site/SponsorsSection";
 
 const TITLE = "Pitch Arena 2026 — Nationwide Startup & Innovation Pitch Competition";
 const DESC =
@@ -37,6 +38,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -112,15 +115,6 @@ const WINNER_PERKS = [
   { title: "Incubation Support", text: "Workspace, labs and the SUKHF ecosystem behind you." },
 ];
 
-const SPONSOR_TIERS = [
-  { tier: "Title Sponsors", note: "Headline partner for Pitch Arena 2026" },
-  { tier: "Powered By", note: "Presenting partners of the finale" },
-  { tier: "Education Partners", note: "Institutions backing student innovation" },
-  { tier: "Startup Partners", note: "Ecosystem builders and accelerators" },
-  { tier: "Community Partners", note: "Networks bringing teams together" },
-  { tier: "Media Partners", note: "Coverage across the event journey" },
-];
-
 const SUPPORTED_BY = [
   { name: "Muffakham Jah College of Engineering & Technology", short: "MJCET" },
   { name: "Sultan-ul-Uloom College of Pharmacy", short: "SUCP" },
@@ -179,7 +173,7 @@ function Home() {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.18, duration: 0.7 }}
-              className="mt-5 text-4xl leading-[1.05] font-bold sm:text-6xl lg:text-7xl"
+              className="mt-5 text-4xl leading-[1.05] font-bold sm:text-6xl lg:text-7xl [text-wrap:balance]"
             >
               Pitch <span className="text-gradient">Arena</span> 2026
             </motion.h1>
@@ -256,7 +250,7 @@ function Home() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <section id="about" className="relative mx-auto max-w-7xl px-4 py-14 sm:py-20 sm:px-6">
         <SectionHeading
           label="About Pitch Arena"
           title={
@@ -282,7 +276,7 @@ function Home() {
       </section>
 
       {/* EVENT FLOW */}
-      <section id="event-flow" className="relative py-20">
+      <section id="event-flow" className="relative py-14 sm:py-20">
         <LightBeams />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
@@ -327,7 +321,7 @@ function Home() {
       </section>
 
       {/* WHO CAN APPLY + BENEFITS */}
-      <section id="benefits" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <section id="benefits" className="mx-auto max-w-7xl px-4 py-14 sm:py-20 sm:px-6">
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
             <div className="glass surface-lift h-full rounded-3xl p-8">
@@ -382,7 +376,7 @@ function Home() {
       </section>
 
       {/* WINNER OPPORTUNITIES */}
-      <section className="relative py-20">
+      <section className="relative py-14 sm:py-20">
         <div className="hero-aura absolute inset-0 opacity-70" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
@@ -446,7 +440,7 @@ function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="mx-auto max-w-4xl px-4 py-20 sm:px-6">
+      <section id="faq" className="mx-auto max-w-4xl px-4 py-14 sm:py-20 sm:px-6">
         <SectionHeading label="FAQ" title="Questions teams ask us" />
         <div className="mt-12 grid gap-3">
           {FAQS.map((f, i) => (
@@ -464,7 +458,7 @@ function Home() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="relative py-20">
+      <section id="contact" className="relative py-14 sm:py-20">
         <Particles count={16} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
