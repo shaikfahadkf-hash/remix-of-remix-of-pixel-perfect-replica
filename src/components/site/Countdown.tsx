@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const DEADLINE = new Date("2026-10-07T23:59:59+05:30").getTime();
+const DEADLINE = new Date("2026-10-26T23:59:59+05:30").getTime();
 
 function diff() {
   const ms = Math.max(0, DEADLINE - Date.now());
@@ -30,7 +30,7 @@ export function Countdown() {
 
   return (
     <div className="glass surface-lift mx-auto w-full max-w-3xl rounded-3xl p-6 sm:p-8">
-      <p className="section-label text-center">Applications close 7 October 2026</p>
+      <p className="section-label text-center">Applications close 26 October 2026</p>
       <div className="mt-5 grid grid-cols-4 gap-2 sm:gap-4">
         {units.map(([label, value]) => (
           <div

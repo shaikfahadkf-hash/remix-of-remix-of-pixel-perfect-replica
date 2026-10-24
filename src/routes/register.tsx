@@ -9,7 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const TITLE = "Register your team — Pitch Arena 2026";
 const DESC =
-  "Register your team for Pitch Arena 2026. Fee ₹499 per team. Submit team details, your startup stage and your pitch deck before 7 October 2026.";
+  "Register your team for Pitch Arena 2026. Fee ₹499 per team. Submit team details, your startup stage and your pitch deck before 26 October 2026.";
 
 export const Route = createFileRoute("/register")({
   head: () => ({
@@ -43,7 +43,7 @@ function RegisterPage() {
             Register for <span className="text-gradient">Pitch Arena 2026</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Applications are open from 1 to 7 October 2026. Fill in your team details and
+            Applications are open until 26 October 2026. Fill in your team details and
             attach your pitch deck — we confirm by email.
           </p>
         </Reveal>

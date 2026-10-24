@@ -58,7 +58,7 @@ const FLOW = [
     step: "01",
     icon: FileText,
     title: "Application & Submission",
-    date: "1 – 7 October 2026",
+    date: "1 – 26 October 2026",
     items: [
       "Idea, product or prototype",
       "Problem statement & solution",
