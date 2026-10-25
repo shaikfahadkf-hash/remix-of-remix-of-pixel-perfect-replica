@@ -1,2 +1,2 @@
-- [ ] Connect the countdown and all closing-date text to saved website settings.
-- [ ] Verify admin saving, India time handling, and public readback.
+- [x] Connect the countdown and all closing-date text to saved website settings.
+- [x] Verify admin saving, India time handling, and public readback.
