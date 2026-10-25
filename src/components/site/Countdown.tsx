@@ -1,25 +1,14 @@
 import { useEffect, useState } from "react";
+import { formatDeadline, remainingTime } from "@/lib/deadline";
 
-const DEADLINE = new Date("2026-10-26T23:59:59+05:30").getTime();
-
-function diff() {
-  const ms = Math.max(0, DEADLINE - Date.now());
-  return {
-    days: Math.floor(ms / 86400000),
-    hours: Math.floor((ms / 3600000) % 24),
-    minutes: Math.floor((ms / 60000) % 60),
-    seconds: Math.floor((ms / 1000) % 60),
-  };
-}
-
-export function Countdown() {
-  const [time, setTime] = useState<ReturnType<typeof diff> | null>(null);
+export function Countdown({ deadline }: { deadline: string }) {
+  const [time, setTime] = useState<ReturnType<typeof remainingTime> | null>(null);
 
   useEffect(() => {
-    setTime(diff());
-    const id = setInterval(() => setTime(diff()), 1000);
+    setTime(remainingTime(deadline, Date.now()));
+    const id = setInterval(() => setTime(remainingTime(deadline, Date.now())), 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [deadline]);
 
   const units: [string, number][] = [
     ["Days", time?.days ?? 0],
@@ -30,7 +19,7 @@ export function Countdown() {
 
   return (
     <div className="glass surface-lift mx-auto w-full max-w-3xl rounded-3xl p-6 sm:p-8">
-      <p className="section-label text-center">Applications close 26 October 2026</p>
+      <p className="section-label text-center">Applications close {formatDeadline(deadline)}</p>
       <div className="mt-5 grid grid-cols-4 gap-2 sm:gap-4">
         {units.map(([label, value]) => (
           <div

@@ -6,18 +6,24 @@ import { Reveal } from "@/components/site/Reveal";
 import { Particles } from "@/components/site/Particles";
 import { DualLogo } from "@/components/site/DualLogo";
 import { supabase } from "@/integrations/supabase/client";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { settingsQuery } from "@/lib/site-settings";
+import { formatDeadline } from "@/lib/deadline";
 
 const TITLE = "Register your team — Pitch Arena 2026";
 const DESC =
-  "Register your team for Pitch Arena 2026. Fee ₹499 per team. Submit team details, your startup stage and your pitch deck before 26 October 2026.";
+  "Register your team for Pitch Arena 2026. Fee ₹499 per team. Submit team details, your startup stage and your pitch deck before the application deadline.";
 
 export const Route = createFileRoute("/register")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(settingsQuery),
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: RegisterPage,
@@ -27,6 +33,7 @@ const inputClass =
   "mt-2 w-full rounded-2xl border border-input bg-secondary/50 px-4 py-3 text-sm outline-none transition-colors focus:border-ring";
 
 function RegisterPage() {
+  const { data: settings } = useSuspenseQuery(settingsQuery);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
@@ -43,7 +50,7 @@ function RegisterPage() {
             Register for <span className="text-gradient">Pitch Arena 2026</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Applications are open until 26 October 2026. Fill in your team details and
+            Applications are open until {formatDeadline(settings.deadline)}. Fill in your team details and
             attach your pitch deck — we confirm by email.
           </p>
         </Reveal>

@@ -1,0 +1,2 @@
+- [x] Connect the countdown and all closing-date text to saved website settings.
+- [x] Verify admin saving, India time handling, and public readback.

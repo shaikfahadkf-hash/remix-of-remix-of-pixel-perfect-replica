@@ -25,12 +25,16 @@ import { Particles, LightBeams } from "@/components/site/Particles";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { Countdown } from "@/components/site/Countdown";
 import { SponsorsSection } from "@/components/site/SponsorsSection";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { settingsQuery } from "@/lib/site-settings";
+import { formatDeadline } from "@/lib/deadline";
 
 const TITLE = "Pitch Arena 2026 — Nationwide Startup & Innovation Pitch Competition";
 const DESC =
   "Pitch Arena 2026 by SU Knowledge Hub Foundation brings students, innovators and startup teams from across India to pitch before investors and industry experts in Hyderabad.";
 
 export const Route = createFileRoute("/")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(settingsQuery),
   head: () => ({
     meta: [
       { title: TITLE },
@@ -150,6 +154,7 @@ const FAQS = [
 ];
 
 function Home() {
+  const { data: settings } = useSuspenseQuery(settingsQuery);
   return (
     <div className="overflow-x-hidden">
       {/* HERO */}
@@ -247,7 +252,7 @@ function Home() {
         </div>
 
         <div className="relative mx-auto mt-16 max-w-7xl px-4 sm:px-6">
-          <Countdown />
+          <Countdown deadline={settings.deadline} />
         </div>
       </section>
 
@@ -300,7 +305,7 @@ function Home() {
                   </div>
                   <h3 className="mt-5 font-display text-xl font-semibold">{stage.title}</h3>
                   <p className="mt-2 font-display text-sm font-semibold text-cyan">
-                    {stage.date}
+                    {stage.step === "01" ? `1 October 2026 – ${formatDeadline(settings.deadline)}` : stage.date}
                   </p>
                   <ul className="mt-5 grid gap-2.5 text-sm text-muted-foreground">
                     {stage.items.map((it) => (

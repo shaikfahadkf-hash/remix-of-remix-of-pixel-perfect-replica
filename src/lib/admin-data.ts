@@ -31,14 +31,7 @@ export const registrationsQuery = queryOptions({
   },
 });
 
-export const settingsQuery = queryOptions({
-  queryKey: ["site_settings"],
-  queryFn: async () => {
-    const { data, error } = await supabase.from("site_settings").select("*").eq("id", 1).single();
-    if (error) throw error;
-    return data;
-  },
-});
+export { settingsQuery } from "./site-settings";
 
 export function exportCsv(rows: Registration[]) {
   const cols = [
