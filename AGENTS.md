@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 - Sponsor logos live in private bucket sponsor-logos (public buckets blocked); public site reads them via signed URLs from src/lib/sponsors.ts.
 - Static site imagery uses lowercase root-absolute paths under public/ so Vercel and other production hosts serve identical filenames.
+- Public closing dates and countdowns read the shared site-settings query through a public read-only server function; admin date inputs use Asia/Kolkata time so saved deadlines are consistent across devices.

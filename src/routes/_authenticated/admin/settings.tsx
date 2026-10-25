@@ -4,17 +4,22 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { settingsQuery } from "@/lib/admin-data";
+import { deadlineInput, parseDeadline } from "@/lib/deadline";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_authenticated/admin/settings")({
+  head: () => ({ meta: [
+    { title: "Website settings — Pitch Arena 2026" },
+    { name: "description", content: "Manage Pitch Arena registration settings and deadline." },
+    { property: "og:title", content: "Website settings — Pitch Arena 2026" },
+    { property: "og:description", content: "Manage Pitch Arena registration settings and deadline." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: SettingsPage,
 });
 
 const input = "mt-2 w-full rounded-2xl border border-input bg-secondary/50 px-4 py-3 text-sm outline-none focus:border-ring";
-
-function toLocal(iso: string) {
-  const d = new Date(iso);
-  return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
-}
 
 function SettingsPage() {
   const qc = useQueryClient();
@@ -27,20 +32,26 @@ function SettingsPage() {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
     setSaving(true);
-    const { error } = await supabase
+    try {
+    const { data: saved, error } = await supabase
       .from("site_settings")
       .update({
         fee: Number(f.get("fee")),
-        deadline: new Date(String(f.get("deadline"))).toISOString(),
+        deadline: parseDeadline(String(f.get("deadline"))),
         registrations_open: f.get("open") === "on",
         announcement: String(f.get("announcement") || "").trim() || null,
         updated_at: new Date().toISOString(),
       })
-      .eq("id", 1);
-    setSaving(false);
-    if (error) { toast.error("Could not save"); return; }
-    qc.invalidateQueries({ queryKey: ["site_settings"] });
+      .eq("id", 1).select().single();
+    if (error || !saved) throw new Error("Could not save settings. Check your admin access and try again.");
+    qc.setQueryData(settingsQuery.queryKey, saved);
+    await qc.invalidateQueries({ queryKey: settingsQuery.queryKey });
     toast.success("Settings saved — the website is updated");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not save settings");
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -55,8 +66,8 @@ function SettingsPage() {
           <input name="fee" type="number" min={0} defaultValue={data.fee} className={input} />
         </label>
         <label className="block text-sm font-medium">
-          Registration deadline
-          <input name="deadline" type="datetime-local" defaultValue={toLocal(data.deadline)} className={input} />
+          Registration deadline (India time)
+          <input required name="deadline" type="datetime-local" defaultValue={deadlineInput(data.deadline)} className={input} />
         </label>
         <label className="flex items-center gap-3 text-sm font-medium">
           <input name="open" type="checkbox" defaultChecked={data.registrations_open} className="h-4 w-4" />
@@ -66,9 +77,9 @@ function SettingsPage() {
           Announcement banner (optional)
           <textarea name="announcement" rows={3} defaultValue={data.announcement ?? ""} className={input} placeholder="e.g. Shortlist announced on 10 October" />
         </label>
-        <button disabled={saving} className="gradient-brand rounded-full px-6 py-3 font-display font-semibold text-primary-foreground disabled:opacity-60">
+        <Button disabled={saving} className="gradient-brand rounded-full px-6 py-3 font-display font-semibold text-primary-foreground disabled:opacity-60">
           {saving ? "Saving…" : "Save changes"}
-        </button>
+        </Button>
       </form>
     </div>
   );
